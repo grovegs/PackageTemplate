@@ -10,12 +10,13 @@ on:
       - main
       - develop
 
+permissions:
+  contents: read
+
 jobs:
   release:
-    uses: grovegs/workflows/.github/workflows/godot-package-format.yml@main
+    uses: grovegs/workflows/.github/workflows/package-format.yml@v1.0.33
     with:
-      core-project: src/{{Author(P)}}.{{Name(P)}}
-      godot-project: src/{{Author(P)}}.{{Name(P)}}.Godot
-      core-test-project: tests/{{Author(P)}}.{{Name(P)}}.Tests
-      godot-test-project: tests/{{Author(P)}}.{{Name(P)}}.Godot.Tests
+      files: "**/*.{json,md}"
+      dotnet-project: .
       global-json-file: global.json

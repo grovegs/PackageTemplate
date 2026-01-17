@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <NoWarn>NU5128</NoWarn>
     <NoBuild>true</NoBuild>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -9,24 +9,23 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <NoDefaultExcludes>true</NoDefaultExcludes>
 
-    <Title>GroveGames.GodotPackageTemplate</Title>
-    <Description>This template provides a versatile .NET setup for creating both NuGet packages and
-      Godot addons with minimal effort.</Description>
+    <Title>GroveGames.PackageTemplate</Title>
+    <Description>A versatile .NET template for creating NuGet packages with optional Unity and Godot platform integrations.</Description>
     <Company>Grove Games</Company>
     <Authors>Grove Games</Authors>
     <Copyright>© Grove Games</Copyright>
 
     <PackageType>Template</PackageType>
-    <PackageId>GroveGames.GodotPackageTemplate</PackageId>
+    <PackageId>GroveGames.PackageTemplate</PackageId>
     <PackageVersion>$(Version)</PackageVersion>
-    <PackageTags>godot;package;template</PackageTags>
-    <PackageProjectUrl>https://github.com/grovegs/GodotPackageTemplate</PackageProjectUrl>
+    <PackageTags>dotnet;unity;godot;package;template</PackageTags>
+    <PackageProjectUrl>https://github.com/grovegs/PackageTemplate</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>Icon.png</PackageIcon>
 
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/grovegs/GodotPackageTemplate</RepositoryUrl>
+    <RepositoryUrl>https://github.com/grovegs/PackageTemplate</RepositoryUrl>
 
     <LocalizeTemplates>false</LocalizeTemplates>
   </PropertyGroup>

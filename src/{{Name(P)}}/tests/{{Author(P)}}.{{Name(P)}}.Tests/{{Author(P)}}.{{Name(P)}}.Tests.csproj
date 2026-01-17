@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
     <IsTestProject>true</IsTestProject>
     <RootNamespace>$(RootNamespace).Tests</RootNamespace>
   </PropertyGroup>
@@ -16,8 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference
-      Include="../../src/{{Author(P)}}.{{Name(P)}}/{{Author(P)}}.{{Name(P)}}.csproj" />
+    <ProjectReference Include="../../src/{{Author(P)}}.{{Name(P)}}/{{Author(P)}}.{{Name(P)}}.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,25 @@
+{
+    "name": "{{Author(P)}}.{{Name(P)}}.Unity.Editor",
+    "rootNamespace": "{{Author(P)}}.{{Name(P)}}.Unity.Editor",
+    "references": [
+        "{{Author(P)}}.{{Name(P)}}.Unity"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+#if (includeCore)
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "{{Author(P)}}.{{Name(P)}}.dll"
+    ],
+#else
+    "overrideReferences": false,
+    "precompiledReferences": [],
+#endif
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

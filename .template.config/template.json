@@ -2,17 +2,17 @@
     "$schema": "http://json.schemastore.org/template",
     "author": "Grove Games",
     "classifications": [
-        "Godot",
+        "Library",
         "Package"
     ],
-    "name": "Godot Package",
-    "identity": "GroveGames.GodotPackage",
-    "shortName": "godotpackage",
+    "name": "Package Template",
+    "identity": "GroveGames.Package",
+    "shortName": "package",
     "tags": {
         "language": "C#",
         "type": "project"
     },
-    "sourceName": "GroveGames.GodotPackage",
+    "sourceName": "GroveGames.Package",
     "preferNameDirectory": true,
     "symbols": {
         "name": {
@@ -29,6 +29,13 @@
             "replaces": "{{Name(P)}}",
             "fileRename": "{{Name(P)}}"
         },
+        "kebabCaseName": {
+            "type": "derived",
+            "valueSource": "name",
+            "valueTransform": "kebabCase",
+            "replaces": "{{Name(K)}}",
+            "fileRename": "{{Name(K)}}"
+        },
         "author": {
             "type": "parameter",
             "isRequired": true,
@@ -42,6 +49,13 @@
             "valueTransform": "pascalCase",
             "replaces": "{{Author(P)}}",
             "fileRename": "{{Author(P)}}"
+        },
+        "kebabCaseAuthor": {
+            "type": "derived",
+            "valueSource": "author",
+            "valueTransform": "kebabCase",
+            "replaces": "{{Author(K)}}",
+            "fileRename": "{{Author(K)}}"
         },
         "github": {
             "type": "parameter",
@@ -64,6 +78,24 @@
             "dataType": "text",
             "replaces": "{{Tags}}"
         },
+        "includeCore": {
+            "type": "parameter",
+            "dataType": "bool",
+            "defaultValue": "true",
+            "description": "Include .NET core library with NuGet package."
+        },
+        "includeUnity": {
+            "type": "parameter",
+            "dataType": "bool",
+            "defaultValue": "false",
+            "description": "Include Unity package integration."
+        },
+        "includeGodot": {
+            "type": "parameter",
+            "dataType": "bool",
+            "defaultValue": "false",
+            "description": "Include Godot addon integration."
+        },
         "ProjectGuid": {
             "type": "generated",
             "generator": "guid",
@@ -84,20 +116,20 @@
             "generator": "guid",
             "replaces": "{{CoreProjectGuid}}"
         },
-        "GodotProjectGuid": {
-            "type": "generated",
-            "generator": "guid",
-            "replaces": "{{GodotProjectGuid}}"
-        },
         "CoreTestsProjectGuid": {
             "type": "generated",
             "generator": "guid",
             "replaces": "{{CoreTestsProjectGuid}}"
         },
-        "GodotCoreTestsProjectGuid": {
+        "UnityProjectGuid": {
             "type": "generated",
             "generator": "guid",
-            "replaces": "{{GodotCoreTestsProjectGuid}}"
+            "replaces": "{{UnityProjectGuid}}"
+        },
+        "GodotProjectGuid": {
+            "type": "generated",
+            "generator": "guid",
+            "replaces": "{{GodotProjectGuid}}"
         }
     },
     "forms": {
@@ -119,14 +151,41 @@
         "kebabCase": {
             "identifier": "kebabCase"
         },
-        "firtstLowerCase": {
+        "firstLowerCase": {
             "identifier": "firstLowerCaseInvariant"
         }
     },
     "sources": [
         {
             "source": "./src",
-            "target": "./"
+            "target": "./",
+            "modifiers": [
+                {
+                    "condition": "(!includeCore)",
+                    "exclude": [
+                        "{{Name(P)}}/src/{{Author(P)}}.{{Name(P)}}/**/*",
+                        "{{Name(P)}}/tests/**/*",
+                        "{{Name(P)}}/sandbox/ConsoleApplication/**/*",
+                        "{{Name(P)}}/sandbox/DotnetBenchmark/**/*",
+                        "{{Name(P)}}/sandbox/UnityApplication/Assets/Editor/PluginBuilder/**/*",
+                        "{{Name(P)}}/sandbox/UnityApplication/Assets/Plugins/**/*"
+                    ]
+                },
+                {
+                    "condition": "(!includeUnity)",
+                    "exclude": [
+                        "{{Name(P)}}/src/{{Author(P)}}.{{Name(P)}}.Unity/**/*",
+                        "{{Name(P)}}/sandbox/UnityApplication/**/*"
+                    ]
+                },
+                {
+                    "condition": "(!includeGodot)",
+                    "exclude": [
+                        "{{Name(P)}}/src/{{Author(P)}}.{{Name(P)}}.Godot/**/*",
+                        "{{Name(P)}}/sandbox/GodotApplication/**/*"
+                    ]
+                }
+            ]
         }
     ],
     "postActions": [
@@ -134,11 +193,11 @@
             "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
             "args": {
                 "executable": "bash",
-                "args": "setup_godotpackage.sh"
+                "args": "setup_package.sh"
             },
             "manualInstructions": [
                 {
-                    "text": "Run 'setup_godotpackage.sh' manually if this fails to complete the setup process."
+                    "text": "Run 'setup_package.sh' manually if this fails to complete the setup process."
                 }
             ],
             "continueOnError": false,

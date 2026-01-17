@@ -1,0 +1,15 @@
+{
+  "name": "com.{{Author(K)}}.{{Name(K)}}",
+  "version": "0.0.1",
+  "displayName": "{{Author(P)}}.{{Name(P)}}",
+  "description": "{{Description}}",
+  "unity": "2021.3",
+  "documentationUrl": "https://github.com/{{Github}}/{{Name(P)}}",
+  "changelogUrl": "https://github.com/{{Github}}/{{Name(P)}}/releases",
+  "licensesUrl": "https://github.com/{{Github}}/{{Name(P)}}/blob/main/LICENSE",
+  "keywords": [],
+  "author": {
+    "name": "{{Author}}",
+    "url": "https://github.com/{{Github}}"
+  }
+}

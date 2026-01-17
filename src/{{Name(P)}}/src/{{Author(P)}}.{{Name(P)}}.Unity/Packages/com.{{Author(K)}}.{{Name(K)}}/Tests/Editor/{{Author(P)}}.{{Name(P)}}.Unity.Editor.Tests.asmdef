@@ -1,0 +1,30 @@
+{
+    "name": "{{Author(P)}}.{{Name(P)}}.Unity.Editor.Tests",
+    "rootNamespace": "{{Author(P)}}.{{Name(P)}}.Unity.Editor.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "{{Author(P)}}.{{Name(P)}}.Unity",
+        "{{Author(P)}}.{{Name(P)}}.Unity.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+#if (includeCore)
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "{{Author(P)}}.{{Name(P)}}.dll"
+    ],
+#else
+    "overrideReferences": false,
+    "precompiledReferences": [],
+#endif
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
