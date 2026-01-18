@@ -77,6 +77,36 @@ The project uses automated formatting via GitHub Actions and comprehensive confi
 
 - **Test Framework**: xUnit v3
 - **Test Configuration**: Uses `xunit.runner.json` for xUnit configuration
+
+### Testing Conventions
+
+- **No mocking frameworks**: Do not use Moq or other mocking libraries
+- **Private test classes**: Each test file contains its own private test doubles as nested classes
+- **Self-contained tests**: Each test file should be self-contained with all required test implementations
+
+Example pattern:
+```csharp
+public class ServiceTests
+{
+    [Fact]
+    public void Method_ShouldDoSomething()
+    {
+        var testDependency = new TestDependency();
+        var service = new Service(testDependency);
+        // ...
+    }
+
+    private sealed class TestDependency : IDependency
+    {
+        public int CallCount { get; private set; }
+
+        public void DoSomething()
+        {
+            CallCount++;
+        }
+    }
+}
+```
 #endif
 
 ## Build Configuration
