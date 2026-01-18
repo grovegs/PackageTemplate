@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version-type:
-        description: Select the version to increment (major, minor, patch)
+        description: Select the version to increment such as major, minor, or patch
         required: true
         default: patch
         type: choice
@@ -15,16 +15,136 @@ on:
 
 permissions:
   contents: write
-  actions: read
 
 jobs:
+  prepare:
+    name: Prepare Release
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.bump-version.outputs.next-version }}
+      changelog-plain: ${{ steps.generate-changelog.outputs.changelog-plain }}
+      changelog-markdown: ${{ steps.generate-changelog.outputs.changelog-markdown }}
+
+    steps:
+      - name: 📂 Checkout Code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: 📝 Generate Changelog
+        id: generate-changelog
+        uses: grovegs/actions/.github/actions/generate-changelog@v1.0.37
+
+      - name: 🆙 Bump Version
+        id: bump-version
+        uses: grovegs/actions/.github/actions/bump-version@v1.0.37
+        with:
+          version-type: ${{ inputs.version-type }}
+
+  build:
+    name: Build Template Package
+    needs: prepare
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📂 Checkout Code
+        uses: actions/checkout@v6
+
+      - name: 🔧 Setup .NET
+        uses: grovegs/actions/.github/actions/setup-dotnet@v1.0.37
+        with:
+          global-json-file: global.json
+
+      - name: 📦 Pack NuGet
+        run: dotnet pack PackageTemplate.csproj -c Release -o ./artifacts -p:Version=${{ needs.prepare.outputs.version }}
+
+      - name: 📤 Upload Package Artifact
+        uses: grovegs/actions/.github/actions/upload-artifact@v1.0.37
+        with:
+          name: nuget-package
+          path: ./artifacts/*.nupkg
+          retention-days: 7
+
   release:
-    uses: grovegs/workflows/.github/workflows/dotnet-package-release.yml@v1.0.33
-    with:
-      name: Package Template
-      project: .
-      global-json-file: global.json
-      version-type: ${{ inputs.version-type }}
-    secrets:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
-      nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+    name: Publish Release
+    needs: [prepare, build]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📂 Checkout Code
+        uses: actions/checkout@v6
+
+      - name: 📥 Download NuGet Package
+        uses: grovegs/actions/.github/actions/download-artifact@v1.0.37
+        with:
+          name: nuget-package
+          path: packages
+
+      - name: 🔍 Find Package File
+        id: find-package
+        shell: bash
+        run: |
+          #!/usr/bin/env bash
+          set -euo pipefail
+
+          package=$(find packages -type f -name "*.nupkg" 2>/dev/null | head -n 1)
+          echo "package=${package}" >> "${GITHUB_OUTPUT}"
+          echo "Found package: ${package}"
+
+      - name: 🚀 Publish to GitHub
+        uses: grovegs/actions/.github/actions/publish-github@v1.0.37
+        with:
+          title: Package Template v${{ needs.prepare.outputs.version }}
+          version: v${{ needs.prepare.outputs.version }}
+          changelog: ${{ needs.prepare.outputs.changelog-markdown }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          assets: ${{ steps.find-package.outputs.package }}
+
+      - name: 📤 Publish to NuGet
+        continue-on-error: true
+        uses: grovegs/actions/.github/actions/publish-nuget@v1.0.37
+        with:
+          file: ${{ steps.find-package.outputs.package }}
+          api-key: ${{ secrets.NUGET_API_KEY }}
+
+      - name: 📢 Notify Discord Success
+        if: success()
+        continue-on-error: true
+        uses: grovegs/actions/.github/actions/notify-discord@v1.0.37
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: ✅ ${{ github.event.repository.name }} v${{ needs.prepare.outputs.version }} (${{ github.ref_name }})
+          description: |
+            ${{ needs.prepare.outputs.changelog-markdown }}
+
+            [View Release](${{ github.server_url }}/${{ github.repository }}/releases/tag/v${{ needs.prepare.outputs.version }})
+          color: "3066993"
+
+      - name: 📢 Notify Discord Failure
+        if: failure()
+        continue-on-error: true
+        uses: grovegs/actions/.github/actions/notify-discord@v1.0.37
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: ❌ ${{ github.event.repository.name }} v${{ needs.prepare.outputs.version }} (${{ github.ref_name }})
+          description: |
+            Release publication failed.
+
+            [View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          color: "15158332"
+
+  cleanup:
+    name: Cleanup on Failure
+    if: always() && (failure() || cancelled()) && needs.prepare.result == 'success'
+    needs: [prepare, build, release]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📂 Checkout Code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: 🗑️ Delete Tag
+        run: |
+          git push origin :refs/tags/v${{ needs.prepare.outputs.version }}

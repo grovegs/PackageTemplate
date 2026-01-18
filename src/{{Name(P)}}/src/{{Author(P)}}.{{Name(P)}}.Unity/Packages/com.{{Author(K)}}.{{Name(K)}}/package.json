@@ -1,6 +1,6 @@
 {
   "name": "com.{{Author(K)}}.{{Name(K)}}",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "displayName": "{{Author(P)}}.{{Name(P)}}",
   "description": "{{Description}}",
   "unity": "2021.3",
