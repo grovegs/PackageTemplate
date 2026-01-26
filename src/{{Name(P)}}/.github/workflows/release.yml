@@ -20,7 +20,7 @@ permissions:
 jobs:
   release:
     name: Release Package
-    uses: grovegs/workflows/.github/workflows/package-release.yml@v1.0.33
+    uses: grovegs/workflows/.github/workflows/package-release.yml@v1.1.7
     with:
       package-name: {{Name(P)}}
       version-type: ${{ inputs.version-type }}
@@ -30,6 +30,8 @@ jobs:
 #endif
       global-json-file: global.json
       directory-build-props: Directory.Build.props
+      readme-file: README.md
+      license-file: LICENSE
 #if (includeGodot)
       godot-addon: src/{{Author(P)}}.{{Name(P)}}.Godot/addons/{{Author(P)}}.{{Name(P)}}
 #endif
