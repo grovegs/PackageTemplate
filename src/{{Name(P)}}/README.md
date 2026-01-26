@@ -79,6 +79,39 @@ using {{Author(P)}}.{{Name(P)}}.Godot;
 ```
 #endif
 
+## Development
+
+### Project Structure
+
+#if (includeCore)
+- `src/{{Author(P)}}.{{Name(P)}}/` - Core .NET library (`net10.0`, `netstandard2.1`)
+#endif
+#if (includeUnity)
+- `src/{{Author(P)}}.{{Name(P)}}.Unity/` - Unity package
+#endif
+#if (includeGodot)
+- `src/{{Author(P)}}.{{Name(P)}}.Godot/` - Godot addon
+#endif
+#if (includeCore)
+- `tests/` - xUnit tests
+#endif
+- `sandbox/` - Sample applications for testing
+
+### Commands
+
+```bash
+dotnet build                        # Build all projects
+dotnet format                       # Format code
+#if (includeCore)
+dotnet test                         # Run tests
+dotnet pack -c Release              # Create NuGet packages
+#endif
+```
+
+### Requirements
+
+- .NET 10.0 SDK
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
