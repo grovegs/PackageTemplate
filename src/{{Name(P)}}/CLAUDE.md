@@ -71,3 +71,33 @@ dotnet pack -c Release
 - Godot addon extends core via `net10.0` dependency
 
 #endif
+
+#if (includeUnity || includeGodot)
+
+## Unity/Godot Configuration Patterns
+
+#endif
+#if (includeUnity)
+
+**Unity Settings:**
+
+- Use ScriptableObject for project-wide settings (stored in ProjectSettings/)
+- Use EditorBuildSettings.AddConfigObject() for runtime access
+- Settings provider in Editor/ folder using UI Toolkit (PropertyField, VisualElement)
+- No singletons - settings accessed via GetOrCreate()
+- No Resources.Load() - EditorBuildSettings.TryGetConfigObject() for runtime
+- Factory accepts settings instance for DI-friendly architecture
+
+#endif
+#if (includeGodot)
+
+**Godot Settings:**
+
+- Default: Use ProjectSettings for project-wide configuration (Godot-native)
+- Wrap with GodotSetting\<T\> for type-safe access
+- Static readonly holders for settings values
+- Optional: Use Resource-based settings for asset-based configuration ([GlobalClass] partial class)
+- Factory supports both: CreateLogger() uses ProjectSettings, CreateLogger(resource) uses Resource
+- No singletons - settings accessed via [Export] reference in nodes for DI
+
+#endif
