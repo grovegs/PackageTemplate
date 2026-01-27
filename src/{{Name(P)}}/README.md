@@ -1,10 +1,8 @@
 # {{Author(P)}}.{{Name(P)}}
 
 [![Build Status](https://github.com/{{Github}}/{{Name(P)}}/actions/workflows/release.yml/badge.svg)](https://github.com/{{Github}}/{{Name(P)}}/actions/workflows/release.yml)
-#if (includeCore)
 [![Tests](https://github.com/{{Github}}/{{Name(P)}}/actions/workflows/tests.yml/badge.svg)](https://github.com/{{Github}}/{{Name(P)}}/actions/workflows/tests.yml)
 [![NuGet](https://img.shields.io/nuget/v/{{Author(P)}}.{{Name(P)}})](https://www.nuget.org/packages/{{Author(P)}}.{{Name(P)}})
-#endif
 [![Latest Release](https://img.shields.io/github/v/release/{{Github}}/{{Name(P)}})](https://github.com/{{Github}}/{{Name(P)}}/releases/latest)
 
 {{Description}}
@@ -15,7 +13,6 @@
 - Feature 2
 - Feature 3
 
-#if (includeCore)
 ## .NET
 
 ### Installation
@@ -31,9 +28,7 @@ using {{Author(P)}}.{{Name(P)}};
 
 // Your code here
 ```
-#endif
 
-#if (includeUnity)
 ## Unity
 
 ### Installation
@@ -54,9 +49,7 @@ using {{Author(P)}}.{{Name(P)}}.Unity;
 
 // Your code here
 ```
-#endif
 
-#if (includeGodot)
 ## Godot
 
 ### Installation
@@ -77,24 +70,15 @@ using {{Author(P)}}.{{Name(P)}}.Godot;
 
 // Your code here
 ```
-#endif
 
 ## Development
 
 ### Project Structure
 
-#if (includeCore)
 - `src/{{Author(P)}}.{{Name(P)}}/` - Core .NET library (`net10.0`, `netstandard2.1`)
-#endif
-#if (includeUnity)
 - `src/{{Author(P)}}.{{Name(P)}}.Unity/` - Unity package
-#endif
-#if (includeGodot)
 - `src/{{Author(P)}}.{{Name(P)}}.Godot/` - Godot addon
-#endif
-#if (includeCore)
 - `tests/` - xUnit tests
-#endif
 - `sandbox/` - Sample applications for testing
 
 ### Commands
@@ -102,10 +86,8 @@ using {{Author(P)}}.{{Name(P)}}.Godot;
 ```bash
 dotnet build                        # Build all projects
 dotnet format                       # Format code
-#if (includeCore)
 dotnet test                         # Run tests
 dotnet pack -c Release              # Create NuGet packages
-#endif
 ```
 
 ### Requirements

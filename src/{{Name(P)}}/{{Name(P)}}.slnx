@@ -1,15 +1,4 @@
 <Solution>
-  <Folder Name="/src/">
-#if (includeCore)
-    <Project Path="src/{{Author(P)}}.{{Name(P)}}/{{Author(P)}}.{{Name(P)}}.csproj" />
-#endif
-#if (includeGodot)
-    <Project Path="src/{{Author(P)}}.{{Name(P)}}.Godot/{{Author(P)}}.{{Name(P)}}.Godot.csproj" />
-#endif
-  </Folder>
-#if (includeCore)
-  <Folder Name="/tests/">
-    <Project Path="tests/{{Author(P)}}.{{Name(P)}}.Tests/{{Author(P)}}.{{Name(P)}}.Tests.csproj" />
-  </Folder>
-#endif
+  <Project Path="src\{{Author(P)}}.{{Name(P)}}\{{Author(P)}}.{{Name(P)}}.csproj" />
+  <Project Path="tests\{{Author(P)}}.{{Name(P)}}.Tests\{{Author(P)}}.{{Name(P)}}.Tests.csproj" />
 </Solution>

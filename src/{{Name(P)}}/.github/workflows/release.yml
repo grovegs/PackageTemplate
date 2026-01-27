@@ -25,30 +25,20 @@ jobs:
       package-name: {{Name(P)}}
       version-type: ${{ inputs.version-type }}
       runs-on: ubuntu-latest
-#if (includeCore)
       dotnet-project: src/{{Author(P)}}.{{Name(P)}}
-#endif
       global-json-file: global.json
       directory-build-props: Directory.Build.props
       readme-file: README.md
       license-file: LICENSE
-#if (includeGodot)
       godot-addon: src/{{Author(P)}}.{{Name(P)}}.Godot/addons/{{Author(P)}}.{{Name(P)}}
-#endif
-#if (includeUnity)
       unity-package: src/{{Author(P)}}.{{Name(P)}}.Unity/Packages/com.{{Author(K)}}.{{Name(K)}}
-#endif
       create-tag: true
       publish-github: true
-#if (includeCore)
       publish-nuget: true
-#endif
       publish-discord: true
     secrets:
       github-token: ${{ secrets.GITHUB_TOKEN }}
       app-id: ${{ secrets.APP_ID }}
       app-private-key: ${{ secrets.APP_PRIVATE_KEY }}
-#if (includeCore)
       nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-#endif
       discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}

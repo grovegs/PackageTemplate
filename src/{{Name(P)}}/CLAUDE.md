@@ -5,10 +5,8 @@
 ```bash
 dotnet build
 dotnet format
-#if (includeCore)
 dotnet test
 dotnet pack -c Release
-#endif
 ```
 
 ## Code Rules
@@ -39,8 +37,6 @@ dotnet pack -c Release
 - Use List\<T\> for mutable collections
 - Prefer ValueTask over Task when result is often synchronous
 
-#if (includeCore)
-
 ## Testing Rules
 
 - Use xUnit v3
@@ -57,22 +53,8 @@ dotnet pack -c Release
 
 - Core library targets: `net10.0` (AOT enabled) and `netstandard2.1`
 - Polyfills in `Polyfills/` folder for netstandard2.1 compatibility
-
-#endif
-
-#if (includeUnity)
-
 - Unity package extends core via `netstandard2.1` dependency
-
-#endif
-
-#if (includeGodot)
-
 - Godot addon extends core via `net10.0` dependency
-
-#endif
-
-#if (includeUnity || includeGodot)
 
 ## Unity/Godot Engine Code Rules
 
@@ -86,9 +68,6 @@ dotnet pack -c Release
 
 ## Unity/Godot Configuration Patterns
 
-#endif
-#if (includeUnity)
-
 **Unity Settings:**
 
 - Use ScriptableObject for project-wide settings (stored in Assets/Settings/)
@@ -97,9 +76,6 @@ dotnet pack -c Release
 - No singletons - settings accessed via GetOrCreate()
 - No Resources.Load() - EditorBuildSettings.TryGetConfigObject() for runtime
 - Factory accepts settings instance for DI-friendly architecture
-
-#endif
-#if (includeGodot)
 
 **Godot Settings:**
 
@@ -110,5 +86,3 @@ dotnet pack -c Release
 - ResourceLoader.Load() for runtime (path from ProjectSettings)
 - Factory accepts settings instance for DI-friendly architecture
 - Optional: Reference same resource via [Export] in nodes for DI
-
-#endif
