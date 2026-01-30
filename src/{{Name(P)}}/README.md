@@ -42,6 +42,13 @@ using {{Author(P)}}.{{Name(P)}};
    - Click "+" > "Add package from git URL"
    - Enter: `https://github.com/{{Github}}/{{Name(P)}}.git?path=src/{{Author(P)}}.{{Name(P)}}.Unity/Packages/com.{{Author(K)}}.{{Name(K)}}`
 
+3. Create a `csc.rsp` file in your `Assets/` directory with the following content to enable C# 10 features:
+
+   ```text
+   -langversion:10
+   -nullable:enable
+   ```
+
 ### Usage
 
 ```csharp

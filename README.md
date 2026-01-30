@@ -106,6 +106,7 @@ MyPackage/
 - Sandbox applications for testing each platform
 - CLAUDE.md for AI-assisted development
 - slnx solution format
+- Pre-configured `csc.rsp` for Unity C# 10 support
 
 ## License
 
