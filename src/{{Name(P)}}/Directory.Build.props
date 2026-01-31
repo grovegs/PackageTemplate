@@ -6,10 +6,10 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1591;1573</NoWarn>
 
-    <RootNamespace>{{Author(P)}}.{{Name(P)}}</RootNamespace>
-    <Company>{{Author}}</Company>
-    <Authors>{{Author}}</Authors>
-    <Copyright>© $([System.DateTime]::Now.ToString("yyyy")) {{Author}}</Copyright>
+    <RootNamespace>GroveGames.Logger</RootNamespace>
+    <Company>Grove Games</Company>
+    <Authors>Grove Games</Authors>
+    <Copyright>© $([System.DateTime]::Now.ToString("yyyy")) Grove Games</Copyright>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -18,30 +18,19 @@
     <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(IsTestProject)' != 'true'">
-    <Version>0.0.0</Version>
+  <PropertyGroup>
+    <Version>0.2.0</Version>
     <PackageId>$(AssemblyName)</PackageId>
-    <PackageProjectUrl>https://github.com/{{Github}}/{{Name(P)}}</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/{{Github}}/{{Name(P)}}</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/grovegs/Logger</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/grovegs/Logger</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>Icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Description>{{Description}}</Description>
-    <PackageTags>{{Tags}}</PackageTags>
+    <Description>High-performance, zero-allocation logging library for .NET, Unity, and Godot</Description>
+    <PackageTags>logger;logging;performance;zero-allocation;unity;godot;aot</PackageTags>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <Using Include="System" />
-    <Using Include="System.Buffers" />
-    <Using Include="System.Collections.Generic" />
-    <Using Include="System.Globalization" />
-    <Using Include="System.IO" />
-    <Using Include="System.Linq" />
-    <Using Include="System.Threading" />
-    <Using Include="System.Threading.Tasks" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(IsTestProject)' != 'true'">
+  <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="/" />
     <None Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="/" />
     <None Include="$(MSBuildThisFileDirectory)Icon.png" Pack="true" PackagePath="/" />
