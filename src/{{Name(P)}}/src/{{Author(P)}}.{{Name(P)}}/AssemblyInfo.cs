@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("{{Author(P)}}.{{Name(P)}}.Tests")]
 [assembly: InternalsVisibleTo("{{Author(P)}}.{{Name(P)}}.Unity")]

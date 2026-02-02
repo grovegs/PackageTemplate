@@ -78,24 +78,6 @@
             "dataType": "text",
             "replaces": "{{Tags}}"
         },
-        "includeCore": {
-            "type": "parameter",
-            "dataType": "bool",
-            "defaultValue": "true",
-            "description": "Include .NET core library with NuGet package."
-        },
-        "includeUnity": {
-            "type": "parameter",
-            "dataType": "bool",
-            "defaultValue": "false",
-            "description": "Include Unity package integration."
-        },
-        "includeGodot": {
-            "type": "parameter",
-            "dataType": "bool",
-            "defaultValue": "false",
-            "description": "Include Godot addon integration."
-        },
         "ProjectGuid": {
             "type": "generated",
             "generator": "guid",
@@ -158,34 +140,7 @@
     "sources": [
         {
             "source": "./src",
-            "target": "./",
-            "modifiers": [
-                {
-                    "condition": "(!includeCore)",
-                    "exclude": [
-                        "{{Name(P)}}/src/{{Author(P)}}.{{Name(P)}}/**/*",
-                        "{{Name(P)}}/tests/**/*",
-                        "{{Name(P)}}/sandbox/ConsoleApplication/**/*",
-                        "{{Name(P)}}/sandbox/DotnetBenchmark/**/*",
-                        "{{Name(P)}}/sandbox/UnityApplication/Assets/Editor/PluginBuilder/**/*",
-                        "{{Name(P)}}/sandbox/UnityApplication/Assets/Plugins/**/*"
-                    ]
-                },
-                {
-                    "condition": "(!includeUnity)",
-                    "exclude": [
-                        "{{Name(P)}}/src/{{Author(P)}}.{{Name(P)}}.Unity/**/*",
-                        "{{Name(P)}}/sandbox/UnityApplication/**/*"
-                    ]
-                },
-                {
-                    "condition": "(!includeGodot)",
-                    "exclude": [
-                        "{{Name(P)}}/src/{{Author(P)}}.{{Name(P)}}.Godot/**/*",
-                        "{{Name(P)}}/sandbox/GodotApplication/**/*"
-                    ]
-                }
-            ]
+            "target": "./"
         }
     ],
     "postActions": [

@@ -9,15 +9,10 @@
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-#if (includeCore)
     "overrideReferences": true,
     "precompiledReferences": [
         "{{Author(P)}}.{{Name(P)}}.dll"
     ],
-#else
-    "overrideReferences": false,
-    "precompiledReferences": [],
-#endif
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
