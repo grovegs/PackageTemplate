@@ -122,6 +122,26 @@
             "type": "generated",
             "generator": "guid",
             "replaces": "{{UnityRuntimeAssemblyInfoMetaGuid}}"
+        },
+        "UnityRuntimeCscRspMetaGuid": {
+            "type": "generated",
+            "generator": "guid",
+            "replaces": "{{UnityRuntimeCscRspMetaGuid}}"
+        },
+        "UnityEditorCscRspMetaGuid": {
+            "type": "generated",
+            "generator": "guid",
+            "replaces": "{{UnityEditorCscRspMetaGuid}}"
+        },
+        "UnityTestsRuntimeCscRspMetaGuid": {
+            "type": "generated",
+            "generator": "guid",
+            "replaces": "{{UnityTestsRuntimeCscRspMetaGuid}}"
+        },
+        "UnityTestsEditorCscRspMetaGuid": {
+            "type": "generated",
+            "generator": "guid",
+            "replaces": "{{UnityTestsEditorCscRspMetaGuid}}"
         }
     },
     "forms": {
