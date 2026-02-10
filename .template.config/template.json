@@ -78,40 +78,50 @@
             "dataType": "text",
             "replaces": "{{Tags}}"
         },
-        "ProjectGuid": {
+        "UnityEditorMetaGuid": {
             "type": "generated",
             "generator": "guid",
-            "replaces": "{{ProjectGuid}}"
+            "replaces": "{{UnityEditorMetaGuid}}"
         },
-        "SrcGuid": {
+        "UnityRuntimeMetaGuid": {
             "type": "generated",
             "generator": "guid",
-            "replaces": "{{SrcGuid}}"
+            "replaces": "{{UnityRuntimeMetaGuid}}"
         },
-        "TestsGuid": {
+        "UnityTestsMetaGuid": {
             "type": "generated",
             "generator": "guid",
-            "replaces": "{{TestsGuid}}"
+            "replaces": "{{UnityTestsMetaGuid}}"
         },
-        "CoreProjectGuid": {
+        "UnityTestsEditorMetaGuid": {
             "type": "generated",
             "generator": "guid",
-            "replaces": "{{CoreProjectGuid}}"
+            "replaces": "{{UnityTestsEditorMetaGuid}}"
         },
-        "CoreTestsProjectGuid": {
+        "UnityTestsRuntimeMetaGuid": {
             "type": "generated",
             "generator": "guid",
-            "replaces": "{{CoreTestsProjectGuid}}"
+            "replaces": "{{UnityTestsRuntimeMetaGuid}}"
         },
-        "UnityProjectGuid": {
+        "UnityPackageJsonMetaGuid": {
             "type": "generated",
             "generator": "guid",
-            "replaces": "{{UnityProjectGuid}}"
+            "replaces": "{{UnityPackageJsonMetaGuid}}"
         },
-        "GodotProjectGuid": {
+        "UnityRuntimeAsmdefMetaGuid": {
             "type": "generated",
             "generator": "guid",
-            "replaces": "{{GodotProjectGuid}}"
+            "replaces": "{{UnityRuntimeAsmdefMetaGuid}}"
+        },
+        "UnityEditorAssemblyInfoMetaGuid": {
+            "type": "generated",
+            "generator": "guid",
+            "replaces": "{{UnityEditorAssemblyInfoMetaGuid}}"
+        },
+        "UnityRuntimeAssemblyInfoMetaGuid": {
+            "type": "generated",
+            "generator": "guid",
+            "replaces": "{{UnityRuntimeAssemblyInfoMetaGuid}}"
         }
     },
     "forms": {
