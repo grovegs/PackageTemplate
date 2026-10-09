@@ -20,9 +20,9 @@ permissions:
 jobs:
   release:
     name: Release Package
-    uses: grovegs/workflows/.github/workflows/package-release.yml@v1.1.7
+    uses: grovegs/workflows/.github/workflows/package-release.yml@v1.3.0
     with:
-      package-name: { { Name(P) } }
+      package-name: "{{Name(P)}}"
       version-type: ${{ inputs.version-type }}
       runs-on: ubuntu-latest
       dotnet-project: src/{{Author(P)}}.{{Name(P)}}
@@ -31,14 +31,14 @@ jobs:
       readme-file: README.md
       license-file: LICENSE
       godot-addon: src/{{Author(P)}}.{{Name(P)}}.Godot/addons/{{Author(P)}}.{{Name(P)}}
-      unity-package: src/{{Author(P)}}.{{Name(P)}}.Unity/Packages/com.{{Author(K)}}.{{Name(K)}}
+      unity-package: src/{{Author(P)}}.{{Name(P)}}.Unity/Packages/com.{{Author(L)}}.{{Name(L)}}
       create-tag: true
       publish-github: true
       publish-nuget: true
       publish-discord: true
     secrets:
       github-token: ${{ secrets.GITHUB_TOKEN }}
-      app-id: ${{ secrets.APP_ID }}
+      client-id: ${{ secrets.CLIENT_ID }}
       app-private-key: ${{ secrets.APP_PRIVATE_KEY }}
       nuget-api-key: ${{ secrets.NUGET_API_KEY }}
       discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}

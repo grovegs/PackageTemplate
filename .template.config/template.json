@@ -36,6 +36,13 @@
             "replaces": "{{Name(K)}}",
             "fileRename": "{{Name(K)}}"
         },
+        "lowerCaseName": {
+            "type": "derived",
+            "valueSource": "name",
+            "valueTransform": "lowerCase",
+            "replaces": "{{Name(L)}}",
+            "fileRename": "{{Name(L)}}"
+        },
         "author": {
             "type": "parameter",
             "isRequired": true,
@@ -56,6 +63,13 @@
             "valueTransform": "kebabCase",
             "replaces": "{{Author(K)}}",
             "fileRename": "{{Author(K)}}"
+        },
+        "lowerCaseAuthor": {
+            "type": "derived",
+            "valueSource": "author",
+            "valueTransform": "lowerCase",
+            "replaces": "{{Author(L)}}",
+            "fileRename": "{{Author(L)}}"
         },
         "github": {
             "type": "parameter",
@@ -81,66 +95,105 @@
         "UnityEditorMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityEditorMetaGuid}}"
         },
         "UnityRuntimeMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityRuntimeMetaGuid}}"
         },
         "UnityTestsMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityTestsMetaGuid}}"
         },
         "UnityTestsEditorMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityTestsEditorMetaGuid}}"
         },
         "UnityTestsRuntimeMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityTestsRuntimeMetaGuid}}"
         },
         "UnityPackageJsonMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityPackageJsonMetaGuid}}"
         },
         "UnityRuntimeAsmdefMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityRuntimeAsmdefMetaGuid}}"
         },
         "UnityEditorAssemblyInfoMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityEditorAssemblyInfoMetaGuid}}"
         },
         "UnityRuntimeAssemblyInfoMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityRuntimeAssemblyInfoMetaGuid}}"
         },
         "UnityRuntimeCscRspMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityRuntimeCscRspMetaGuid}}"
         },
         "UnityEditorCscRspMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityEditorCscRspMetaGuid}}"
         },
         "UnityTestsRuntimeCscRspMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityTestsRuntimeCscRspMetaGuid}}"
         },
         "UnityTestsEditorCscRspMetaGuid": {
             "type": "generated",
             "generator": "guid",
+            "parameters": {
+                "defaultFormat": "n"
+            },
             "replaces": "{{UnityTestsEditorCscRspMetaGuid}}"
         }
     },
@@ -163,8 +216,23 @@
         "kebabCase": {
             "identifier": "kebabCase"
         },
+        "lowerCase": {
+            "identifier": "chain",
+            "steps": [
+                "invalidChars",
+                "lowerCaseInvariant"
+            ]
+        },
+        "lowerCaseInvariant": {
+            "identifier": "lowerCaseInvariant"
+        },
         "firstLowerCase": {
             "identifier": "firstLowerCaseInvariant"
+        }
+    },
+    "SpecialCustomOperations": {
+        "**/Polyfills/**/*.cs": {
+            "operations": []
         }
     },
     "sources": [

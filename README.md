@@ -15,8 +15,10 @@ dotnet new install GroveGames.PackageTemplate
 ## Create a New Package
 
 ```bash
-dotnet new package -na "Logger" -au "Grove Games" -g "grovegs" -de "High-performance logging library" -ta "logger;logging"
+dotnet new package -na "Logger" -au "Grove Games" -g "grovegs" -de "High-performance logging library" -ta "logger;logging" --allow-scripts yes
 ```
+
+`--allow-scripts yes` runs the setup script, which links the Unity and Godot packages into their sandboxes. Without it, `dotnet new` asks before running it.
 
 ## Parameters
 

@@ -40,7 +40,7 @@ using {{Author(P)}}.{{Name(P)}};
 2. Add the Unity package via Git URL:
    - Open Package Manager (Window > Package Manager)
    - Click "+" > "Add package from git URL"
-   - Enter: `https://github.com/{{Github}}/{{Name(P)}}.git?path=src/{{Author(P)}}.{{Name(P)}}.Unity/Packages/com.{{Author(K)}}.{{Name(K)}}`
+   - Enter: `https://github.com/{{Github}}/{{Name(P)}}.git?path=src/{{Author(P)}}.{{Name(P)}}.Unity/Packages/com.{{Author(L)}}.{{Name(L)}}`
 
 3. Create a `csc.rsp` file in your `Assets/` directory with the following content to enable C# 10 features:
 
