@@ -12,10 +12,11 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 jobs:
   release:
-    uses: grovegs/workflows/.github/workflows/package-format.yml@v1.3.0
+    uses: grovegs/workflows/.github/workflows/package-format.yml@v1.4.0
     with:
       files: "**/*.{json,md}"
       dotnet-project: .
