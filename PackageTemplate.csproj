@@ -13,7 +13,7 @@
     <Description>A versatile .NET template for creating NuGet packages with optional Unity and Godot platform integrations.</Description>
     <Company>Grove Games</Company>
     <Authors>Grove Games</Authors>
-    <Copyright>© Grove Games</Copyright>
+    <Copyright>© Grove Games Teknoloji A.Ş.</Copyright>
 
     <PackageType>Template</PackageType>
     <PackageId>GroveGames.PackageTemplate</PackageId>
